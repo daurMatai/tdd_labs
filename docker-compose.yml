@@ -1,0 +1,9 @@
+version: '2'
+services:
+  php:
+    build:
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
+    volumes:
+      - ./app:/app
+      - /app/vendor
