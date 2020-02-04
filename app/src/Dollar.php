@@ -6,13 +6,8 @@ namespace src;
  * Class Dollar
  * @package src
  */
-class Dollar
+class Dollar extends Money
 {
-    /**
-     * @var int
-     */
-    private int $amount = 0;
-
     /**
      * Dollar constructor.
      * @param int $amount
@@ -31,12 +26,5 @@ class Dollar
         return new self($this->amount * $multiplier);
     }
 
-    /**
-     * @param Dollar $dollar
-     * @return bool
-     */
-    public function equals(self $dollar) : bool
-    {
-        return $this->amount === $dollar->amount;
-    }
+
 }
