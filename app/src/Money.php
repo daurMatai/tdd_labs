@@ -49,7 +49,7 @@ class Money
      */
     public static function dollar(int $amount) : Money
     {
-        return new Dollar($amount, 'USD');
+        return new Money($amount, 'USD');
     }
 
     /**
@@ -58,7 +58,7 @@ class Money
      */
     public static function franc(int $amount) : Money
     {
-        return new Franc($amount, 'CHF');
+        return new Money($amount, 'CHF');
     }
 
     /**
