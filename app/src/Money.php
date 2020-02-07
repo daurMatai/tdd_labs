@@ -2,7 +2,7 @@
 
 namespace src;
 
-abstract class Money
+class Money
 {
     /**
      * @var int
@@ -14,11 +14,11 @@ abstract class Money
      */
     protected string $currency;
 
-    /**
-     * @param int $multiplier
-     * @return Money
-     */
-    abstract function times(int $multiplier) : Money;
+//    /**
+//     * @param int $multiplier
+//     * @return Money
+//     */
+//    function times(int $multiplier) : Money;
 
     public function __construct(int $amount, string $currency)
     {
@@ -40,7 +40,7 @@ abstract class Money
      */
     public function equals(self $money) : bool
     {
-        return $this->amount === $money->amount &&  get_class($this) === get_class($money);
+        return $this->amount === $money->amount && $this->currency === $money->currency;
     }
 
     /**
@@ -59,5 +59,14 @@ abstract class Money
     public static function franc(int $amount) : Money
     {
         return new Franc($amount, 'CHF');
+    }
+
+    /**
+     * @param int $multiplier
+     * @return Money
+     */
+    public function times(int $multiplier) : Money
+    {
+        return new Money($this->amount * $multiplier, $this->currency);
     }
 }

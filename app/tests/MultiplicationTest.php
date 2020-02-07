@@ -3,19 +3,10 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use src\Dollar;
-use src\Franc;
 use src\Money;
 
 class MultiplicationTest extends TestCase
 {
-    public function testMultiplication()
-    {
-        $five = Money::dollar(5);
-
-        $this->assertEquals(Money::dollar(10), $five->times(2));
-        $this->assertEquals(Money::dollar(15), $five->times(3));
-    }
 
     public function testEquality()
     {
@@ -24,13 +15,5 @@ class MultiplicationTest extends TestCase
         $this->assertTrue((Money::franc(5))->equals(Money::franc(5)));
         $this->assertFalse((Money::franc(5))->equals(Money::franc(6)));
         $this->assertFalse((Money::franc(5))->equals(Money::dollar(5)));
-    }
-
-    public function testFrancMultiplication()
-    {
-        $five = Money::franc(5);
-
-        $this->assertEquals(Money::franc(10), $five->times(2));
-        $this->assertEquals(Money::franc(15), $five->times(3));
     }
 }
