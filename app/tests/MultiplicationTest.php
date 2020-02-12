@@ -47,10 +47,23 @@ class MultiplicationTest extends TestCase
 //        $this->assertEquals(Money::dollar(7), $result);
 //    }
 
-    public function testReduceMoney()
+//    public function testReduceMoney()
+//    {
+//        $bank = new Bank();
+//        $result = $bank->reduce(Money::dollar(1), 'USD');
+//        $this->assertEquals(Money::dollar(1), $result);
+//    }
+
+    public function testReduceMoneyDifferentCurrency()
     {
         $bank = new Bank();
-        $result = $bank->reduce(Money::dollar(1), 'USD');
+        $bank->addRate('CHF', 'USD', 2);
+        $result = $bank->reduce(Money::franc(2), 'USD');
         $this->assertEquals(Money::dollar(1), $result);
+    }
+
+    public function testIdentityRate()
+    {
+        $this->assertEquals(1, (new Bank())->rate('USD', 'USD'));
     }
 }
