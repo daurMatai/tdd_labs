@@ -11,13 +11,18 @@ class Money implements Expression
     /**
      * @var int
      */
-    protected int $amount = 0;
+    public int $amount = 0;
 
     /**
      * @var string
      */
     protected string $currency;
 
+    /**
+     * Money constructor.
+     * @param int $amount
+     * @param string $currency
+     */
     public function __construct(int $amount, string $currency)
     {
         $this->amount = $amount;
@@ -74,6 +79,14 @@ class Money implements Expression
      */
     public function plus(Money $added) : Expression
     {
-        return new Money($this->amount + $added->amount, $this->currency);
+        return new Sum($this, $added);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function reduce(string $to) : Money
+    {
+        return $this;
     }
 }
