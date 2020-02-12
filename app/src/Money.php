@@ -2,7 +2,11 @@
 
 namespace src;
 
-class Money
+/**
+ * Class Money
+ * @package src
+ */
+class Money implements Expression
 {
     /**
      * @var int
@@ -13,12 +17,6 @@ class Money
      * @var string
      */
     protected string $currency;
-
-//    /**
-//     * @param int $multiplier
-//     * @return Money
-//     */
-//    function times(int $multiplier) : Money;
 
     public function __construct(int $amount, string $currency)
     {
@@ -38,7 +36,7 @@ class Money
      * @param Money $money
      * @return bool
      */
-    public function equals(self $money) : bool
+    public function equals(Money $money) : bool
     {
         return $this->amount === $money->amount && $this->currency === $money->currency;
     }
@@ -68,5 +66,14 @@ class Money
     public function times(int $multiplier) : Money
     {
         return new Money($this->amount * $multiplier, $this->currency);
+    }
+
+    /**
+     * @param Money $added
+     * @return Expression
+     */
+    public function plus(Money $added) : Expression
+    {
+        return new Money($this->amount + $added->amount, $this->currency);
     }
 }
